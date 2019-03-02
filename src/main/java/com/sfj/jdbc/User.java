@@ -1,16 +1,12 @@
 package com.sfj.jdbc;
 
-/**
- *
- * @author corto
- */
 public class User {
 
     private String name;
     private int age;
-    
+
     public User() {
-        
+
     }
 
     public User(String name, int age) {
@@ -33,10 +29,10 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
-    
+
     @Override
     public String toString() {
         return "name: " + name + ", age: " + age;
     }
-    
+
 }

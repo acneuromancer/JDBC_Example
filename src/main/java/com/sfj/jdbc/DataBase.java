@@ -28,7 +28,7 @@ public class DataBase {
     DatabaseMetaData dbmd = null;
 
     public DataBase() {
-        // Try to make alive/animate/vivify the bridge.
+        // Try to animate the bridge.
         try {
             connection = DriverManager.getConnection(URL);
             System.out.println("Bridge established.");
@@ -68,12 +68,12 @@ public class DataBase {
             System.out.println("" + ex);
         }
     }
-    
+
     public void showUsersMeta() {
         final String SQL = "select * from users";
         ResultSet resultSet = null;
         ResultSetMetaData rsmd = null;
-        
+
         try {
             resultSet = statement.executeQuery(SQL);
             rsmd = resultSet.getMetaData();
@@ -86,7 +86,7 @@ public class DataBase {
             System.out.println("" + ex);
         }
     }
-    
+
     public void addUser(String name, int age) {
         try {
             // final String SQL = "insert into users values ('" + name + "'," +  age + ")";
@@ -102,40 +102,40 @@ public class DataBase {
            System.out.println("" + ex);
         }
     }
-    
+
     public void showAllUsers() {
         final String SQL = "select * from users";
-        
+
         try {
             ResultSet resultSet = statement.executeQuery(SQL);
             while(resultSet.next()) {
                 String name = resultSet.getString("name");
                 int age = resultSet.getInt("age");
                 System.out.println(name + " | " + age);
-            }            
+            }
         } catch (SQLException ex) {
             System.out.println("\nA problem occured while reading users.");
             System.out.println("" + ex);
         }
     }
-    
+
     public List<User> getAllUsers() {
         final String SQL = "select * from users";
         List<User> users = null;
-        
+
         try {
             ResultSet resultSet = statement.executeQuery(SQL);
             users = new ArrayList<>();
             while(resultSet.next()) {
                 User actualUser = new User(resultSet.getString("name"), resultSet.getInt("age"));
-                users.add(actualUser);                
+                users.add(actualUser);
             }
         } catch (SQLException ex) {
             System.out.println("A problem occured while reading out users.");
             System.out.println("" + ex);
         }
-        
+
          return users;
     }
-    
+
 }
